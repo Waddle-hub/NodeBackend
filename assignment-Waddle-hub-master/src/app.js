@@ -49,14 +49,13 @@ if (config.env === 'prod') {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: true }));
 }
 
-const issuesRouter = require('./routes/issues');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const issuesRouter = require('./routes/issues');
 app.use('/issues', issuesRouter);
 
 module.exports = app;
