@@ -21,10 +21,12 @@ const logger = winston.createLogger({
   ]
 });
 
-const createIssue = (issue) => {
-  return new Promise((resolve, reject) => {
-    issueDao.create(issue).then((doc) => resolve(doc)).catch((err) => reject(err));
-  });
+const createIssue = async (issue) => {
+  try {
+    return await issueDao.create(issue);
+  } catch (err) {
+    return err;
+  }
 };
 
 const readIssues = () => {
