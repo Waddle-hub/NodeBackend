@@ -58,4 +58,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const issuesRouter = require('./routes/issues');
 app.use('/issues', issuesRouter);
 
+const managerRouter = require('./routes/managers');
+app.use('/managers', managerRouter);
+
 module.exports = app;
