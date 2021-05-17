@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const controller = require('../controller/managers');
 /**
  *  @swagger
  *  /managers:
@@ -10,8 +10,5 @@ const router = express.Router();
  *           200:
  *              description: list of tasks that are open
  */
-
-router.get('/', (req, res) => {
-  res.status(200).send('ok');
-});
+router.get('/', controller.listTasksOpen);
 module.exports = router;
