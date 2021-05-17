@@ -1,18 +1,5 @@
 const { validationResult } = require('express-validator');
 const service = require('../service/issues');
-const winston = require('winston');
-
-const logger = winston.createLogger({
-  level: 'info',
-  format: winston.format.json(),
-  transports: [
-    new winston.transports.File({
-      level: 'info',
-      filename: 'logs/controller.log'
-    }),
-    new winston.transports.Console()
-  ]
-});
 
 exports.createIssue = (req, res, next) => {
   if (!validationResult(req).isEmpty()) {
@@ -49,7 +36,6 @@ exports.stateChangeToClosed = (req, res, next) => {
   service.changeStateToClosed(req.params.id)
     .then(issues => res.send(issues))
     .catch(err => {
-      logger.error({ err: err });
       res.status(400).send({ error: err });
     });
 };

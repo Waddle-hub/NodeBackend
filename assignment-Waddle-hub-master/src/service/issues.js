@@ -1,4 +1,5 @@
 const winston = require('winston');
+const issueDao = require('../models/issues');
 
 const DUMMY_ISSUE = {
   _id: '603c9813eb0dec3a97b29be7',
@@ -22,7 +23,7 @@ const logger = winston.createLogger({
 
 const createIssue = (issue) => {
   return new Promise((resolve, reject) => {
-    resolve(DUMMY_ISSUE);
+    issueDao.create(issue).then((doc) => resolve(doc)).catch((err) => reject(err));
   });
 };
 
