@@ -1,5 +1,6 @@
 const winston = require('winston');
 const issueDao = require('../models/issues');
+const issueState = require('../models/issueState');
 
 const DUMMY_ISSUE = {
   _id: '603c9813eb0dec3a97b29be7',
@@ -25,7 +26,7 @@ const createIssue = async (issue) => {
   try {
     const current = new Date();
     issue.recorded = current.toLocaleString();
-    return await issueDao.create(issue);
+    return await issueDao.create({ ...issue, state: issueState.OPEN });
   } catch (err) {
     logger.error({
       message: 'Data access error',
@@ -65,13 +66,13 @@ const isStateChangeAllowed = (from, to) => {
 };
 
 const changeStateToInProgress = (id) => {
-  return changeSate(id, 'in progress');
+  return changeSate(id, issueState.IN_PROGRESS);
 };
 const changeStateToResolved = (id) => {
-  return changeSate(id, 'resolved');
+  return changeSate(id, issueState.RESOLVED);
 };
 const changeStateToClosed = (id) => {
-  return changeSate(id, 'closed');
+  return changeSate(id, issueState.CLOSED);
 };
 
 module.exports = {
