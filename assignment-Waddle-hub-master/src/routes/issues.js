@@ -43,11 +43,30 @@ router.get('/:id', issuesController.readIssue);
  *                   type: object
  *                   required: true
  *                   properties:
- *                      title:
+ *                      mechanic:
  *                          type: string
- *                          example: Issue 1
+ *                      cause:
+ *                          type: string
+ *                      solution:
+ *                          type: string
+ *                      state:
+ *                          type: string
  *                      description:
  *                          type: string
+ *                      contact:
+ *                          type: object
+ *                          properties:
+ *                              name:
+ *                               type: string
+ *                              phone:
+ *                               type: string
+ *                              address:
+ *                               type: object
+ *                               properties:
+ *                                  city:
+ *                                    type: string
+ *                                  addresss:
+ *                                    type : string
  *      responses:
  *          200:
  *              description: success

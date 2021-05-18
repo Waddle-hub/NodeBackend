@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const address = require('addresses');
+const address = require('./addresses');
 
 const contactSchema = new mongoose.Schema({
   name: {
@@ -9,7 +9,7 @@ const contactSchema = new mongoose.Schema({
     type: String
   },
   address: {
-    type: address
+    type: address.schema
   }
 });
 

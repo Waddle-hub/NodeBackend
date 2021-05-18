@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
-const contact = require('contacts');
+const contacts = require('./contacts');
+
 const IssueSchema = new mongoose.Schema({
   recorded: {
     type: Date
   },
   contact: {
-    type: contact,
+    type: contacts.schema,
     required: true
   },
   state: {

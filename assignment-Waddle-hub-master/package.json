@@ -36,6 +36,7 @@
     "express-validator": "^6.9.0",
     "mongoose": "^5.12.9",
     "morgan": "~1.9.1",
+    "openapi-comment-parser": "^1.0.0",
     "winston": "^3.3.3"
   }
 }
