@@ -36,16 +36,12 @@ const createIssue = async (issue) => {
   }
 };
 
-const readIssues = () => {
-  return new Promise((resolve, reject) => {
-    resolve([DUMMY_ISSUE]);
-  });
+const readIssues = async () => {
+  return await issueDao.find().exec();
 };
 
-const readIssuesById = (id) => {
-  return new Promise((resolve, reject) => {
-    resolve(DUMMY_ISSUE);
-  });
+const readIssuesById = async (id) => {
+  return await issueDao.findById(id).exec();
 };
 
 const changeSate = (id, state) => {
