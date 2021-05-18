@@ -1,22 +1,18 @@
 const mongoose = require('mongoose');
-
+const contact = require('contacts');
 const IssueSchema = new mongoose.Schema({
   recorded: {
     type: Date
   },
-  title: {
-    type: String,
-    required: true
-  },
   contact: {
-    type: Object,
-    required: false
-  },
-  description: {
-    type: String,
+    type: contact,
     required: true
   },
   state: {
+    type: String,
+    required: true
+  },
+  description: {
     type: String,
     required: true
   },
