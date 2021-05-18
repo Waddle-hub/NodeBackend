@@ -23,8 +23,14 @@ const logger = winston.createLogger({
 
 const createIssue = async (issue) => {
   try {
+    const current = new Date();
+    issue.recorded = current.toLocaleString();
     return await issueDao.create(issue);
   } catch (err) {
+    logger.error({
+      message: 'Data access error',
+      error: err
+    });
     return err;
   }
 };
