@@ -16,23 +16,6 @@ router.get('/', issuesController.readIssue);
 
 /**
  * @swagger
- * /issues/{id}:
- *      get:
- *          summary: get issue by id
- *          parameters:
- *              -   in: path
- *                  name: id
- *                  type: integer
- *                  required: true
- *          responses:
- *              200:
- *                  description: a single issue object
- *
- */
-router.get('/:id', issuesController.readIssue);
-
-/**
- * @swagger
  * /issues:
  *  post:
  *      summary: create a new issue
@@ -94,23 +77,6 @@ router.post('/', issueRequestDto, issuesController.createIssue);
  */
 router.put('/:id/in-progress', issuesController.stateChangeToInProgress);
 
-/**
- * @swagger
- * /issues/{id}/resolve:
- *      put:
- *          summary: get issue by id
- *          parameters:
- *              -   in: path
- *                  name: id
- *                  type: integer
- *                  required: true
- *          responses:
- *              200:
- *                  description: a single issue object
- *              400:
- *                  description: error object
- */
-router.put('/:id/resolve', issuesController.stateChangeToResolved);
 /**
  * @swagger
  * /issues/{id}/close:

@@ -9,6 +9,9 @@ const readIssuesById = async (id) => {
   return await mechanicDao.findById(id).exec();
 };
 
+const readByOpenIssue = async () => {
+  return await mechanicDao.find({ state: issueState.OPEN }).exec();
+};
 const changeSate = async (id, state) => {
   const currentIssue = readIssuesById(id);
   if (!isStateChangeAllowed(currentIssue.state, state)) {
@@ -34,6 +37,7 @@ const changeStateToClosed = (id) => {
 module.exports = {
   readIssues: readIssues,
   readIssuesById: readIssuesById,
+  readByOpenIssue: readByOpenIssue,
   changeStateToInProgress: changeStateToInProgress,
   changeStateToResolved: changeStateToResolved,
   changeStateToClosed: changeStateToClosed
