@@ -14,7 +14,7 @@ const config = require('./config');
 const mongoose = require('mongoose');
 
 const { host, port, name, user, password } = config.db;
-const dbConnectionString = `mongodb://${host}:${port}/${name}`;
+const dbConnectionString = `mongodb://${host}:${port}/${name}?authSource=admin`;
 
 mongoose.connect(dbConnectionString, {
   useNewUrlParser: true,

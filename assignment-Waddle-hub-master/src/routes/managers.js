@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const issuesController = require('../controller/issues');
 // const issueRequestDto = require('./dto/issueRecordRequestDto');
 const controller = require('../controller/managers');
+
 /**
  *  @swagger
  *  /managers:
@@ -12,7 +12,7 @@ const controller = require('../controller/managers');
  *           200:
  *              description: list of tasks that are open
  */
-router.get('/', controller.listTasksOpen);
+router.get('/', controller.readIssue);
 module.exports = router;
 
 /**
@@ -30,4 +30,4 @@ module.exports = router;
  *                  description: a single issue object
  *
  */
-router.get('/:id', issuesController.readIssue);
+router.get('/:id', controller.readIssue);

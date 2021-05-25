@@ -44,17 +44,13 @@ const readIssuesById = async (id) => {
   return await issueDao.findById(id).exec();
 };
 
-const changeSate = (id, state) => {
-  return readIssuesById(id)
-    .then(issue => {
-      if (!isStateChangeAllowed(issue.state, state)) {
-        logger.info(`Invalid State Change ${issue.state} => ${state}`);
-        throw new Error({ msg: `Invalid State ohange ${issue.state} => ${state}` });
-      }
-      return issue;
-    }).then(issue => {
-      return DUMMY_ISSUE;
-    });
+const changeSate = async (id, state) => {
+  const currentIssue = readIssuesById(id);
+  if (!isStateChangeAllowed(currentIssue.state, state)) {
+    logger.info(`Invalid State Change ${currentIssue.state} => ${state}`);
+    throw new Error({ msg: `Invalid State ohange ${currentIssue.state} => ${state}` });
+  }
+  return await issueDao.findByIdAndUpdate(id, { state: state }, { new: true }).exec();
 };
 
 const isStateChangeAllowed = (from, to) => {

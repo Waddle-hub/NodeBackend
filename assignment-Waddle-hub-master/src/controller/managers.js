@@ -1,8 +1,13 @@
+const service = require('../service/managers');
 
-const listTasksOpen = (req, res) => {
-  res.status(200).send('Ok from controller');
-};
-
-module.exports = {
-  listTasksOpen: listTasksOpen
+exports.readIssue = (req, res, next) => {
+  if (req.params.id === undefined) {
+    service.readIssues()
+      .then(issues => res.send(issues))
+      .catch(err => res.send({ error: err }));
+    return;
+  }
+  service.readIssuesById(req.params.id)
+    .then(issues => res.send(issues === null ? {} : issues))
+    .catch(err => res.send({ error: err }));
 };
